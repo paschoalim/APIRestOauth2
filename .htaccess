@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+Header add Access-Control-Allow-Origin "*"
+Header add Access-Control-Allow-Methods "GET,POST,OPTIONS,DELETE,PUT"
+Header add Access-Control-Allow-Headers "Content-Type, Accept, Authorization, other_header"
+# Config for slim-jwt-auth : https://github.com/tuupola/slim-jwt-auth#install
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
